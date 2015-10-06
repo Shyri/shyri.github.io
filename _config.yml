@@ -3,28 +3,27 @@
 paginate: 10 # pagination based on number of posts
 paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
-highlighter: pygments
+highlighter: rouge
 markdown: kramdown
-disqus: dbyll
-google_analytics: dbyll
-
+#disqus: dbyll
+#google_analytics: dbyll
+title: Shyri Villar
 defaults:
   -
     scope:
       path: "" # empty string for all files
     values:
-      title: dbyll
+      title: Shyri Villar
 
 description: Stylish Jekyll Theme
 author:
-  name: dbyll
-  email: dbyll@ismaildemirbilek.com
-  github: dbtek
-  twitter: dbtek
-  pinterest: asd123
-  linkedin: asd123
-  bio: Your stylish, minimalist theme!
-  email_md5: 726351295ec82e145928582f595aa3aa
+  name: Shyri Villar
+  github: Shyri
+  twitter: shyrivi
+  #pinterest: asd123
+  linkedin: shyrivillar
+  stackoverflow: 3288786/shyri
+  bio: Eat, Sleep, Code, Repeat!
 
 rss_path: feed.xml
 categories_path: categories.html
