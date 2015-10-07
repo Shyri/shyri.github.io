@@ -44,6 +44,13 @@
 			</a>
 		</li>
 		{% endif %}
+		{% if site.author.googleplus %}
+		<li>
+			<a class="btn btn-default btn-sm" href="https://plus.google.com/u/0/+{{ site.author.googleplus }}">
+				<i class="fa fa-google-plus fa-lg"></i>
+			</a>
+		</li>
+		{% endif %}
 		{% if site.author.linkedin %}
 		<li>
 			<a class="btn btn-default btn-sm" href="https://linkedin.com/in/{{ site.author.linkedin }}">

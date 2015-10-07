@@ -2,6 +2,9 @@
 
 body{
 	color: rgba(0,0,0,0.87);
+    font-family: "Roboto", "PT sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+
 }
 
 .sidebar {
@@ -36,6 +39,9 @@ a.nav-link i{
 	font-size: 16px;
 }
 a.nav-link:hover { color: #777 }
+a:active, a:hover {
+    outline: 0;
+}
 
 #bio {
 	font-family: "Roboto", "PT sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -57,6 +63,10 @@ article .share .btn {
 article .share .twitter:hover {
 	color: #00ACEE;
 	border-color: #00ACEE;
+}
+
+article .col-sm-10 {
+	padding-left: 0px;
 }
 #contact-list li:hover .fa-linkedin {
 	color: #1D87BD;
@@ -85,7 +95,10 @@ article .share .gplus:hover {
 
 .page-header {
 	color: #212121;
-	text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+	padding-bottom: 0px;
+    border-bottom: 0px;
+    width: 90%;
+    margin: 0px 0px 0px 0px;
 }
 
 article{
@@ -104,14 +117,21 @@ article{
 }
 
 article {
-	padding: 0 5% 0;
+	
 }
 
 article.home div a, article.home pre a { color: #2c3e50; }
 article.home div a:hover, article.home pre a:hover { color: #2c3e50; text-decoration: none; }
 article img { max-width: 100%; }
 
-h1,h2,h3,h4,h5,h6 { font-family: 'Ubuntu', sans-serif; }
+h1 {
+    font-size: 60px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Roboto', 'Arvo';
+    font-weight: bold;
+}
 article.home h1,
 article.home h2,
 article.home h3,
@@ -141,8 +161,9 @@ article.home h4 a:hover {
 }
 
 footer {
-	padding-top: 15px;
-	font-family: 'Ubuntu';
+	padding-top: 12px;
+	font-family: 'Roboto';
+	font-size: 0.7em;
 }
 
 /* nav-vertical-tabs component */
@@ -185,3 +206,15 @@ ul.dropdown-menu>li>a>i.fa {
     width: 1.3em;
 }
 
+.tag_box {
+    font-size: 12px;
+}
+.list-inline {
+    padding-left: 0;
+    list-style: none;
+}
+
+
+.col-sm-offset-3 {
+    margin-left: 22%;
+}
