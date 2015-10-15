@@ -32,7 +32,7 @@ First open your **AndroidManifest.xml** file and make sure your application has 
 
 Then add **MaterialToolbar** as a dependency in your *build.gradle* file:
 
-{% highlight gradle %}
+{% highlight javascript %}
 dependencies {
     compile 'es.shyri:materialtoolbar:0.1.1'
 }
