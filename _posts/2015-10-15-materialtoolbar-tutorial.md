@@ -30,6 +30,14 @@ First open your **AndroidManifest.xml** file and make sure your application has 
 </application>
 {% endhighlight %}
 
+Then add **MaterialToolbar** as a dependency in your *build.gradle* file:
+
+{% highlight gradle %}
+dependencies {
+    compile 'es.shyri:materialtoolbar:0.1.1'
+}
+{% endhighlight %}
+
 ### 1- Prepare your activity###
 Create a new Activity with the following layout, this is a minimum for the **MaterialPresenter** in order to work correctly:
 
