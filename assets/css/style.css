@@ -217,6 +217,25 @@ ul.dropdown-menu>li>a>i.fa {
     list-style: none;
 }
 
+ul.lang-selector {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.lang {
+    display: inline;
+}
+
+a.lang-hightlit{
+    color:#212121;
+    font-weight: bold;
+}
+
+a.lang{
+    color:#212121;
+    
+}
 
 .col-sm-offset-3 {
     margin-left: 22%;

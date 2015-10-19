@@ -1,7 +1,18 @@
 <div class="page-header">
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
+	{% assign posts=site.posts | where:"name", page.name | sort: 'path' %}
+	<ul class="lang-selector">
+		{% for post in posts %}
+		    <li class="lang">
+		    	{% if post.lang == page.lang %}
+		        	<a href="{{ post.url }}" class="lang-hightlit">{{ post.lang }}</a>
+		        {% else %}
+		        	<a href="{{ post.url }}" class="lang">{{ post.lang }}</a>
+		        {% endif %}
+		    </li>
+		{% endfor %}
+	</ul>
 </div>
-	
 <article>
 
 	<div class="col-sm-10">

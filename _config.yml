@@ -11,9 +11,16 @@ title: Shyri Villar
 defaults:
   -
     scope:
-      path: "" # empty string for all files
+      path: "_posts/en" # empty string for all files
     values:
       title: Shyri Villar
+      lang: en
+  -
+    scope:
+      path: "_posts/es" # empty string for all files
+    values:
+      title: Shyri Villar
+      lang: es  
 
 description: Stylish Jekyll Theme
 author:
@@ -24,10 +31,10 @@ author:
   linkedin: shyrivillar
   #stackoverflow: 3288786/shyri
   googleplus: shyrivillar
-  bio: Eat, Sleep, Code, Repeat!
+  bio: Eat, Sleep, Code, Repeat
 
 rss_path: feed.xml
 categories_path: categories.html
 tags_path: tags.html
 
-BASE_PATH:
+

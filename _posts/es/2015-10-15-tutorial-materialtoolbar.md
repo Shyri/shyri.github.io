@@ -1,10 +1,12 @@
 ---
 layout: post
-title: MaterialToolbar Tutorial
+title: Tutorial MaterialToolbar
 categories: [Android]
 tags: [Material Design, library, Toolbar]
 fullview: true
 comments: true
+name: material-toolbar-tutorial
+lang: es
 ---
 
 This tutorial describes how to use a library I have been working on for several months. Actually it all started as a couple of classes to set custom views inside a toolbar in a "Material Design" way, and later I decided make a module from it and publish it as a library. MaterialToolbar makes it easy to place custom views inside your Android Toolbar while it handles navigation through Fragments.

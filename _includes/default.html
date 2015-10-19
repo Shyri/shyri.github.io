@@ -21,7 +21,12 @@
 	<link href="{{ site.BASE_PATH }}/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="{{ site.BASE_PATH }}/assets/resources/syntax/syntax.css" rel="stylesheet">
 	<link href="{{ site.BASE_PATH }}/assets/css/style.css" rel="stylesheet">
-
+	{% assign posts=site.posts | where:"name", page.name %}
+	{% for post in posts %}
+	  {% if post.lang != page.lang %}
+	    <link rel="alternate" hreflang="{{post.lang}}" href="{{post.url}}" />
+	  {% endif %}
+	{% endfor %}
 	<!-- Le fav and touch icons -->
 	<!-- Update these with your own images
 	<link rel="shortcut icon" href="images/favicon.ico">
