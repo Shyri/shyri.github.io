@@ -9,19 +9,19 @@ name: material-toolbar-tutorial
 lang: es
 ---
 
-This tutorial describes how to use a library I have been working on for several months. Actually it all started as a couple of classes to set custom views inside a toolbar in a "Material Design" way, and later I decided make a module from it and publish it as a library. MaterialToolbar makes it easy to place custom views inside your Android Toolbar while it handles navigation through Fragments.
+Escribo este tutorial para enseñar a usar una pequeña librería en la que he trabajado intermitentemente desde hace tiempo. En relidad surge de la necesidad de hacer una Toolbar dinámica al estilo "Material Design" para una de nuestras apps y que más tarde decidí extraer como módulo para utilizar en otras aplicaciones, llamándolo "MaterialToolbar". La librería te facilita posicionar vistas personalizadas dentro de una Toolbar de android mientras maneja la navegación por Fragments del Activity que contiene la Toolbar.
 
-The whole concept is inspired on the so called **MVP** pattern. **MaterialToolbar** library provides a **MaterialPresenter**. Initially an Activity must be attached to the MaterialPresenter. This Activity must have a MaterialToolbar view and Fragment container (i.e. FrameLayout) in its layout. Once attached, navigation through Fragments will be handled by the MaterialPresenter. 
+El concepto está inspirado en el patrón **MVP** (Modelo Vista Presentador). **MaterialToolbar** incluye una clase **MaterialPresenter** encargada de hacer el papel de presentador. Inicialmente necesita que una Activity se ancle al MaterialPresenter. Este Activity debe contener en su layout al menos una vista **MaterialToolbar** y otra vista que sirva para poner los Fragments (por ejemplo un FrameLayout). Una vez anclado, la navegación a través de los fragments será manejado por el MaterialPresenter.
 
-Additionally your Fragments could provide a **MaterialToolbarContent** to the presenter. This is the view which the **MaterialPresenter** will place inside the **MaterialToolbar** when this Fragment becomes visible. From this Fragment you can interact with your toolbar components freely.
+Además, los Fragments podrán proveer de un **MaterialToolbarContent** al presenter, que será el contenido de la Toolbar que se quiere que aparezca cuando el Fragment se hace visible, y te permitirá interactuar con todas las vistas fácilmente.
 
 ![Alt text](https://raw.githubusercontent.com/Shyri/MaterialToolbar/master/images/demo-portrait.gif) ![Alt text](https://raw.githubusercontent.com/Shyri/MaterialToolbar/master/images/demo-landscape.gif)
 
-So let's stop talking and start coding!
+Basta de palabras y vamos a programar!
 
-### 0- Prepare your App###
+### 0- Preparar la app###
 
-First open your **AndroidManifest.xml** file and make sure your application has property *theme* set to **Theme.AppCompat.Light.NoActionBar** or any other theme that extends it. This will allow you to use the **MaterialToolbar** as the Activity ActionBar.
+Lo primero, abre en tu **AndroidManifest.xml** y asegurate de poner el *theme* a **Theme.AppCompat.Light.NoActionBar** o alguno que extienda de él. Esto permitirá a **MaterialToolbar** ser el Actionbar del Activity.
 
 {% highlight xml %}
 <application
@@ -32,7 +32,7 @@ First open your **AndroidManifest.xml** file and make sure your application has 
 </application>
 {% endhighlight %}
 
-Then add **MaterialToolbar** as a dependency in your *build.gradle* file:
+Añadimos **MaterialToolbar** como dependencia dentro del fichero *build.gradle* del módulo de la app.
 
 {% highlight javascript %}
 dependencies {
@@ -40,8 +40,10 @@ dependencies {
 }
 {% endhighlight %}
 
-### 1- Prepare your activity###
-Create a new Activity with the following layout, this is a minimum for the **MaterialPresenter** in order to work correctly:
+### 1- Preparar el Activity###
+Esta librería está pensada para aplicaciones cuya navegación principal se basa en Fragments que se muestran dentro de un mismo Activity. Esto no tiene por qué ser así, se pueden tener muchas Activity de navegación, pero aquí explicaremos como utilizarla con un solo Activity.
+
+Crea un nuevo Activity con el siguiente layout, esto es lo mínimo indispensable para que el **MaterialPresenter** pueda funcionar correctamente:
 
 {% highlight xml %}
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -68,11 +70,11 @@ Create a new Activity with the following layout, this is a minimum for the **Mat
 </LinearLayout>
 {% endhighlight %}
 
-As you can see, there is a **MaterialToolbar** and a **FrameLayout**. The first will be used by the presenter to set the content view you want to show. The second will also be used by the presenter which will place your Fragments there.
+Como puedes ver, hemos incluido un **MaterialToolbar* y un **FrameLayout**. El primero será usado por el presentador para poner en ella la vista que le diga cada fragment. Y el segundo, para poner el fragment en si.
 
-**Note:** If you want the **MaterialToolbar** to have smooth transitions set the property *animateLayoutChanges* to true in both the Toolbar and the FrameLayout.
+**Nota:** Si quieres que el **MaterialToolbar** tenga una animación chula cuando su contenido cambia, pon la propiedad *animateLayoutChanges* a *true* tanto en el **MaterialToolbar** como en el **FrameLayout**
 
-Now override your Activity's onCreate() method:
+Ahora tenemos que sobreescribir el método *onCreate()* del Activity:
 
 {% highlight java %}
 	@Override
@@ -93,9 +95,12 @@ Now override your Activity's onCreate() method:
     }
 {% endhighlight %}
 
-In **1** we get the **MaterialPresenter** singleton. In **2** you attach this activity to the presenter and you must provide the **MaterialToolbar**'s' and **FrameLayout**'s' ids. In **3** you are telling the presenter to navigate to **MyFirstFragment** when the app starts.
+En el punto **1** recuperamos el singleton **MaterialPresenter**. Como he dicho antes, el tutorial se plantea como una app de una sola Activity de navegación, así que asumimos que será suficiente con tener una sola instancia de **MaterialPresenter** para toda la app. 
 
-Now override the onDestroy() method:
+En el punto **2** anclamos el activity al presenter con el método *attachActivty()*. Es necesario además decirle cuáles son los ids del **MaterialToolbar** y el **FrameLayout** dentro del Activity.
+
+Ahora sobreescribimos el método *onDestroy()*:
+
 {% highlight java %}
 	@Override
     protected void onDestroy() {
@@ -104,11 +109,11 @@ Now override the onDestroy() method:
     }
 {% endhighlight %}
 
-The detachActivity() method will detach this activity. This is very important in order to avoid crashes by configuration changes (i.e. device rotation) and view leaks.
+El método *detachActivity()* deshará el anclaje entrel el activity y el presentador. Esto es muy importante para evitar crashes en los cambios de configuración (por ejemplo en rotaciones) y también para evitar view leaks.
 
-Finally override the *onBackPressed()* method to let the presenter handle the *Fragment* backstack.
+Finalmente sobreescribimos el método *onBackPressed()* para dejar que el presentador maneje el backstack de Fragments.
 
-Optionally you can automate the display the back arrow in the toolbar making your Activity implement **FragmentManager.OnBackStackChangedListener** by adding this line to the Activity's onCreate() method:
+Opcionalmente puedes añadir un poco de código para que la flecha de "back" de la barra superior se muestre siempre que exista un Fragment "anterior" en la navegación. Esto lo puedes hacer añadiendo esta línea en el método *onCreate()*:
 
 {% highlight java %}
 	@Override
@@ -125,9 +130,9 @@ Optionally you can automate the display the back arrow in the toolbar making you
     }
 {% endhighlight %}
 
-### 2- Prepare your Fragments ###
+### 2- Preparar los Fragment ###
 
-Override the Fragment's onCreateView() method:
+Si quieres que un Fragment provea de una vista personalizada para el Toolbar cuando éste aparezca, primero sobreescribe el método *onCreateView()*:
 
 {% highlight java %}
 	@Override
@@ -155,14 +160,13 @@ Override the Fragment's onCreateView() method:
     }
 {% endhighlight %}	
 
-**1:** Create your **MaterialToolbarContent** from an xml layout. Note you can write several layout files targeting different configurations, for example one for portrait and another for landscape mode.
+**1:** Crear  tu **MaterialToolbarContent** desde un layout xml. Atento: igual que para el resto de vistas puedes tener distintos fichero xml que permitan distinta visualización del contenido de la barra en distintas configuraciones, por ejemplo si el dispositivo está en vertical u horizontal.
 
-**2:** Tell the Presenter to take this *toolbarContent* and place it inside the **MaterialToolbar*.
+**2:** Dile al **MaterialPresenter** que coja este *toolbarContent* y lo ponga dentro de la **MaterialToolbar*
 
-**3:** Instantiate any view your **MaterialToolbarContainer** may have and set any listener you want.
-Note that once you have the presenter instance, you can call *navigateTo()* method whenever you want in oder to navigate to other Fragment
+**3:** Instancia cualquier vista de tu **MaterialToolbarContent* y añade cualquier listener que quieras. Puedes ver cómo hemos hecho una llamada al presenter para que al hacer click en un botón navegue hacia otro Fragment con el método *navigateTo()*.
 
-So... where do you get the presenter instance from? Don't worry, presenter will arrive through an interface method, but in exchange you must implement another method to give him the **MaterialToolbarContent** just in case he needs it again later.
+Y... de dónde sacamos la instancia del presenter? Para que este Fragment pueda darle el contenido de la barra superior al presenter, es necesario implementar el interfaz **MaterialToolbarSupplier** y sus métodos:
 
 {% highlight java %}
 	@Override
@@ -176,11 +180,8 @@ So... where do you get the presenter instance from? Don't worry, presenter will 
     }
 {% endhighlight %}
 
-
-Only those Fragments which have custom view layout inside the **MaterialToolbar** need to implement **MaterialToolbarSupplier** interface.
-
-### 3- Bonus tips: ###
-At this point you'll have a toolbar without the shadow specified by **Material Design** guidelines. To achieve this just edit the Activity's layout file adding an elevation of 4dp to the **MaterialToolbar**. This will only work for Android 21 and further. In order to give shadow for earlier versions add the property *android:foreground="?android:windowContentOverlay"* to the Fragment container layout:
+### 3- Trucos bonus: ###
+Si has seguido el tutorial, en este punto tendrás una Toolbar que no tiene la típica sombra que dictan las guías de diseño de **Material Design** de Google. Para conseguirlo, solo tienes que añadir el parámetor *elevation="4dp"* en el **MaterialToolbar** del xml de layout del Activity. Esto solo funcionará para Android 21 y versiones más recientes. Para hacerlo funcionar en versiones previas es necesario añadir el parámetro *android:foreground="?android:windowContentOverlay"* al **FrameLayout** del activity principal
 
 {% highlight xml %}
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -211,7 +212,8 @@ At this point you'll have a toolbar without the shadow specified by **Material D
 </LinearLayout>
 {% endhighlight %}
 
+Y... ¡Eso es todo! Espero que encuentres útil esta librería y que este tutorial te haya ayudado a entenderlo un poco mejor. Si tienes opiniones, si ves algún error o simplemente quieres comentarme algo, puedes contactarme por las distintas vías que aparecen aquí.
 
-And that's pretty much all. Hope you've found it useful. Feel free to give your feedback and contribute to the project on Github: https://github.com/Shyri/MaterialToolbar , where you'll find a sample app using the library.
+Puedes ver el código de la librería en Github: <a href="https://github.com/Shyri/MaterialToolbar">https://github.com/Shyri/MaterialToolbar</a>
 
-Enjoy!
+A programar!

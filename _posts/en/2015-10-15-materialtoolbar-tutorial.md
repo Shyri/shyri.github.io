@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MaterialToolbar Tutorial
+title: MaterialToolbar library Tutorial
 categories: [Android]
 tags: [Material Design, library, Toolbar]
 fullview: true
@@ -212,6 +212,6 @@ At this point you'll have a toolbar without the shadow specified by **Material D
 {% endhighlight %}
 
 
-And that's pretty much all. Hope you've found it useful. Feel free to give your feedback and contribute to the project on Github: https://github.com/Shyri/MaterialToolbar , where you'll find a sample app using the library.
+And that's pretty much all. Hope you've found it useful. Feel free to give your feedback and contribute to the project on Github: <a href="https://github.com/Shyri/MaterialToolbar">https://github.com/Shyri/MaterialToolbar</a>, where you'll find a sample app using the library.
 
 Enjoy!
