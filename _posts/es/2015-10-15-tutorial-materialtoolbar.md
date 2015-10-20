@@ -70,7 +70,7 @@ Crea un nuevo Activity con el siguiente layout, esto es lo mínimo indispensable
 </LinearLayout>
 {% endhighlight %}
 
-Como puedes ver, hemos incluido un **MaterialToolbar* y un **FrameLayout**. El primero será usado por el presentador para poner en ella la vista que le diga cada fragment. Y el segundo, para poner el fragment en si.
+Como puedes ver, hemos incluido un **MaterialToolbar** y un **FrameLayout**. El primero será usado por el presentador para poner en ella la vista que le diga cada fragment. Y el segundo, para poner el fragment en si.
 
 **Nota:** Si quieres que el **MaterialToolbar** tenga una animación chula cuando su contenido cambia, pon la propiedad *animateLayoutChanges* a *true* tanto en el **MaterialToolbar** como en el **FrameLayout**
 
@@ -162,11 +162,11 @@ Si quieres que un Fragment provea de una vista personalizada para el Toolbar cua
 
 **1:** Crear  tu **MaterialToolbarContent** desde un layout xml. Atento: igual que para el resto de vistas puedes tener distintos fichero xml que permitan distinta visualización del contenido de la barra en distintas configuraciones, por ejemplo si el dispositivo está en vertical u horizontal.
 
-**2:** Dile al **MaterialPresenter** que coja este *toolbarContent* y lo ponga dentro de la **MaterialToolbar*
+**2:** Dile al **MaterialPresenter** que coja este *toolbarContent* y lo ponga dentro de la **MaterialToolbar**
 
-**3:** Instancia cualquier vista de tu **MaterialToolbarContent* y añade cualquier listener que quieras. Puedes ver cómo hemos hecho una llamada al presenter para que al hacer click en un botón navegue hacia otro Fragment con el método *navigateTo()*.
+**3:** Instancia cualquier vista de tu **MaterialToolbarContent** y añade cualquier listener que quieras. Puedes ver cómo hemos hecho una llamada al presenter para que al hacer click en un botón navegue hacia otro Fragment con el método *navigateTo()*.
 
-Y... de dónde sacamos la instancia del presenter? Para que este Fragment pueda darle el contenido de la barra superior al presenter, es necesario implementar el interfaz **MaterialToolbarSupplier** y sus métodos:
+Y... ¿De dónde sacamos la instancia del presenter? Para que este Fragment pueda darle el contenido de la barra superior al presenter, es necesario implementar el interfaz **MaterialToolbarSupplier** y sus métodos:
 
 {% highlight java %}
 	@Override
@@ -212,7 +212,7 @@ Si has seguido el tutorial, en este punto tendrás una Toolbar que no tiene la t
 </LinearLayout>
 {% endhighlight %}
 
-Y... ¡Eso es todo! Espero que encuentres útil esta librería y que este tutorial te haya ayudado a entenderlo un poco mejor. Si tienes opiniones, si ves algún error o simplemente quieres comentarme algo, puedes contactarme por las distintas vías que aparecen aquí.
+¡Eso es todo! Espero que encuentres útil esta librería y que este tutorial te haya ayudado a entenderlo un poco mejor. Si tienes opiniones, si ves algún error o simplemente quieres comentarme algo, puedes contactarme por las distintas vías que aparecen aquí.
 
 Puedes ver el código de la librería en Github: <a href="https://github.com/Shyri/MaterialToolbar">https://github.com/Shyri/MaterialToolbar</a>
 

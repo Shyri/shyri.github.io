@@ -3,6 +3,9 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:300&subset=latin,cyrillic-ext);
 @import url(http://fonts.googleapis.com/css?family=Roboto:400&subset=latin,latin-ext);
 
+
+
+
 body{
 	color: rgba(0,0,0,0.87);
     font-family: "Roboto", "PT sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -230,6 +233,7 @@ li.lang {
 a.lang-hightlit{
     color:#212121;
     font-weight: bold;
+    text-decoration: underline;
 }
 
 a.lang{
@@ -238,5 +242,6 @@ a.lang{
 }
 
 .col-sm-offset-3 {
-    margin-left: 22%;
+    margin-left: 21%;
+    margin-right: 2%;
 }
