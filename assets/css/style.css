@@ -241,6 +241,7 @@ a.lang{
     
 }
 
+@media screen and (min-width: 480px) {
 .col-sm-offset-3 {
     margin-left: 21%;
     margin-right: 2%;
